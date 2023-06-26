@@ -34,7 +34,7 @@ async function run() {
 
  const optionsCollection = client.db('select-box').collection('options')
 
- app.get("/all-options", async (req, res) => {
+ app.get("/allOptions", async (req, res) => {
   const cursor = optionsCollection.find({});
   const result = await cursor.toArray();
   res.send({ status: true, data: result });

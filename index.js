@@ -71,6 +71,36 @@ async function run() {
 
 
 
+ app.patch("/updateData/:id", async (req, res) => {
+
+  const optionId = req.params.id;
+  const data = req.body;
+
+  // const optionId = "64987737cce0b1c268b6f07f";
+  // const user = { name: 'update', option: 'Manufacturing', agree: true };
+
+  console.log(optionId);
+  console.log(data);
+
+  const updateDoc = {
+   $set: {
+    "user.name": data.name,
+   },
+  };
+
+  const result = await optionsCollection.updateOne(
+   { _id: new ObjectId(optionId) },
+   updateDoc,
+  );
+
+  if (result.acknowledged) {
+   return res.send({ status: true, data: result });
+  }
+  res.send({ status: false });
+ });
+
+
+
 
 
 }
